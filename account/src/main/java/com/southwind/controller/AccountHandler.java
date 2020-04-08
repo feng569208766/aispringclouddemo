@@ -45,4 +45,8 @@ public class AccountHandler {
         }*/
     }
 
+    public static void main(String[] args) {
+        System.out.println("");
+    }
+
 }
