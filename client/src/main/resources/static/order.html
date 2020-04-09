@@ -10,7 +10,7 @@
 <div class="layui-container" style="width: 960px;height: 600px;margin-top: 0px;padding-top: 60px;">
 
     <div style="margin-left: 460px; width: 300px;">
-        <a href="/account/redirect/index">首页</a>&nbsp;&nbsp;|&nbsp;&nbsp;欢迎回来！<a href="/order/redirect/order" th:text="${session.user.nickname}"></a><a href="/account/logout">&nbsp;&nbsp;&nbsp;<button class="layui-btn layui-btn-warm layui-btn-radius">退出</button></a>
+        <a href="/menu/redirect/index">首页</a>&nbsp;&nbsp;|&nbsp;&nbsp;欢迎回来！<a href="/menu/redirect/order" th:text="${session.user.nickname}"></a><a href="/account/logout">&nbsp;&nbsp;&nbsp;<button class="layui-btn layui-btn-warm layui-btn-radius">退出</button></a>
     </div>
 
     <table class="layui-hide" id="test" lay-filter="test"></table>
@@ -40,7 +40,9 @@
                                 return data.menu.flavor
                             }
                         }
-                        ,{field:'date',width:300,  title: '下单时间'}
+                        ,{field:'date',width:300,  title: '下单时间',templet:function (data) {
+                            return setTime(data.date);
+                        }}
                         ,{field:'state', width:160, title: '订单状态',templet:function(data){
                                 var result = "";
                                 switch (data.state) {
@@ -67,6 +69,25 @@
                 }
             });
         });
+        function setTime (v) {
+            return new Date(parseInt(v)).toLocaleString()
+        }
+        Date.prototype.toLocaleString = function () {
+            var y = this.getFullYear();
+            var m = this.getMonth()+1;
+            m = m<10?'0'+m:m;
+            var d = this.getDate();
+            d = d<10?("0"+d):d;
+            var h = this.getHours();
+            h = h<10?("0"+h):h;
+            var M = this.getMinutes();
+            M = M<10?("0"+M):M;
+            var S=this.getSeconds();
+            S=S<10?("0"+S):S;
+            return y+"-"+m+"-"+d+" "+h+":"+M+":"+S;
+            //返回的时间格式 2018-12-27 15：35
+            //自定义时间格式直接更改return格式即可
+        };
     </script>
 
 </div>
