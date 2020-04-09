@@ -23,6 +23,7 @@ public class AccountHandler {
 
     @GetMapping("/login/{username}/{password}/{type}")
     public Object login(@PathVariable("username") String username,@PathVariable("password") String password,@PathVariable("type") String type) {
+        System.out.println("account开始登陆操作");
         Object object = null;
         switch (type) {
             case "user":
@@ -34,19 +35,5 @@ public class AccountHandler {
             default:
         }
         return object;
-
-
-        /*if ("user".equals(type)) {
-            User user = userRepository.login(username, password);
-            return user;
-        }else {
-            Admin admin = adminRespository.login(username, password);
-            return admin;
-        }*/
     }
-
-    public static void main(String[] args) {
-        System.out.println("");
-    }
-
 }

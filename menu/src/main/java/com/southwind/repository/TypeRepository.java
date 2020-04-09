@@ -6,6 +6,6 @@ import com.southwind.entity.Type;
 import java.util.List;
 
 public interface TypeRepository {
-    public Type findById(int id);
-    public List<Type> findTypes();
+    Type findById(int id);
+    List<Type> findTypes();
 }
